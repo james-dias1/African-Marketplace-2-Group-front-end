@@ -1,0 +1,29 @@
+.nav-bar {
+    display: flex;
+    background-color: grey;
+    margin: 0;
+}
+
+.left-links {
+    width: 50%;
+    display: flex;
+    margin-left: 1.5%;
+}
+
+.right-links {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1.5%;
+}
+
+.link {
+    text-decoration: none;
+    padding: 2.5% 1.5%;
+    color: #E5DCC3;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: white;
+}

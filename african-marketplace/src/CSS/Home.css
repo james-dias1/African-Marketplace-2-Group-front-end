@@ -1,0 +1,24 @@
+.home-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../imgs/kabita-darlami-lneMADustvA-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    font-size: 5rem;
+    margin:0;
+    color: #E5DCC3;
+    padding-top: 5%;
+}
+
+.home-btn {
+    margin-top: 1%;
+    font-size: 1.25rem;
+    padding: .25% .85%;
+    border-radius: 5px;
+}
