@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useRouteMatch } from 'react-router-dom';
 
+
 import data from '../data'
 import '../CSS/Products.css'
 
@@ -13,6 +14,7 @@ function fetchStock() {
 export default function Products(props) {
     const [items, setItems] = useState([])
     const  url  = useRouteMatch().url;
+    let count = 1;
 
   useEffect(() => {
     fetchStock().then(res => setItems(res.data))
@@ -25,13 +27,13 @@ export default function Products(props) {
                 {/* <h1>products-list</h1> */}
         <div className='container'>
         {items.map(item => (
-            <div className='item-card' key={item.id}>
-                <div className='bg-img'>
+            <div className={'item-card' }  key={item.id}>
+                <div className={'bg-img order'+ (((item.id+1)*2-1)+(item.id%2*(1)))%2 }>
                     {/* 👉 STEP 6 - Link starts, navigates us from <current url> to <current url>/<id of the item> */}
                     <Link to={`${url}/${item.id}`}>
                     <img
                         className='items-list-image'
-                        src="https://picsum.photos/360"
+                        src={item.imageUrl}
                         alt={item.name}
                     />
                     {/* <p>{item.name}</p> */}
@@ -40,7 +42,8 @@ export default function Products(props) {
         
                     {/* <p>${item.price}</p> */}
                 </div>
-                <div className='text'>
+                {/* {(count++)} */}
+                <div className={'text order'+ (((item.id+1)*2)+(item.id%2*(-1)) )%2  }>
                     <h2>{item.name}</h2>
                     <p>{item.instructions}</p>
                     <p>{item.location}</p>
