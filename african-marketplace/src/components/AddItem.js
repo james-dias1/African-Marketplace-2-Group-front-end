@@ -32,7 +32,7 @@ export default function AddItem() {
     const postNewItem = newItem => {
         axios.post('https://pokeapi.co/', newItem)
             .then(response => {
-                // set([...formValues])
+                setFormValues([[response.data], ...formValues])
             })
             .catch(error => {
                 console.error(error)
@@ -42,31 +42,31 @@ export default function AddItem() {
             })
     }
 
-    // const validate = (name, value) => {
-    //     yup.reach(schema, name)
-    //       .validate(value)
-    //       .then(() => setFormErrors({...formErrors, [name]: ''}))
-    //       .catch(error => setFormErrors({...formErrors, [name]: error.errors[0]}))
-    // }
+    const validate = (name, value) => {
+        yup.reach(schema, name)
+          .validate(value)
+          .then(() => setFormErrors({...formErrors, [name]: ''}))
+          .catch(error => setFormErrors({...formErrors, [name]: error.errors[0]}))
+    }
 
-    // const inputChange = (name, value) => {
-    //     validate(name, value)
-    //     setFormValues({...formValues, [name]: value})
-    // }
+    const inputChange = (name, value) => {
+        validate(name, value)
+        setFormValues({...formValues, [name]: value})
+    }
 
     const submitItem = () => {
         const newItem = {
-            name: formValues.name.trim(),
-            location: formValues.location.trim(),
-            description: formValues.description.trim(),
-            price: formValues.price.trim()
+            name: formValues.name, 
+            location: formValues.location,
+            description: formValues.description,
+            price: formValues.price
         }
         postNewItem(newItem)
     }
     
-    useEffect(() => {
-        schema.isValid(formValues).then(valid => setDisabled(!valid))
-      }, [formValues])
+    // useEffect(() => {
+    //     schema.isValid(formValues).then(valid => setDisabled(!valid))
+    //   }, [formValues])
 
     const onSubmit = event => {
         event.preventDefault()
@@ -125,7 +125,7 @@ export default function AddItem() {
                         onChange={onChange}
                         name='price'
                         type='number'
-                        // inputmode='decimal'
+                        inputmode='decimal'
                         placeholder='Please enter a number'
                     />
                 </label>
@@ -133,11 +133,11 @@ export default function AddItem() {
             </div>
 
             <div className='form-submit'>
-                <button id='add-button'disabled={disabled}>Post Item</button>
+                <button id='add-button'>Post Item</button>
                 <div className='errors'>
-                    {/* <div>{formErrors.location}</div>
+                    <div>{formErrors.location}</div>
                     <div>{formErrors.name}</div>
-                    <div>{formErrors.price}</div> */}
+                    <div>{formErrors.price}</div>
                 </div>
             </div>
         </form>
