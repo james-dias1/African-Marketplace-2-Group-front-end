@@ -50,10 +50,9 @@ export default function AddItem() {
           .catch(error => setFormErrors({...formErrors, [name]: error.errors[0]}))
     }
 
-    const inputChange = (name, value) => {
-        validate(name, value)
-        setFormValues({...formValues, [name]: value})
-    }
+    useEffect(() => {
+        schema.isValid(formValues).then(valid => setDisabled(!valid))
+    }, [formValues])
 
     const submitItem = () => {
         const newItem = {
@@ -64,10 +63,6 @@ export default function AddItem() {
         }
         postNewItem(newItem)
     }
-    
-    // useEffect(() => {
-    //     schema.isValid(formValues).then(valid => setDisabled(!valid))
-    //   }, [formValues])
 
     const onSubmit = event => {
         event.preventDefault()
@@ -75,6 +70,7 @@ export default function AddItem() {
     }
 
     const onChange = event => {
+        validate(event.target.name, event.target.value)
         setFormValues({
             [event.target.name]: event.target.value,
         })
@@ -91,11 +87,11 @@ export default function AddItem() {
                         value={formValues.location}
                         name='location'>
                             <option value=''>-- Select a Province --</option>
-                            <option value='eastern-cape'>Eastern Cape</option>
-                            <option value='free-state'>Free State</option>
-                            <option value='gauteng'>Gauteng</option>
-                            <option value='limpopo'>Limpopo</option>
-                            <option value='north-west'>North West</option>
+                            <option value='Eastern-Cape'>Eastern Cape</option>
+                            <option value='Free-State'>Free State</option>
+                            <option value='Gauteng'>Gauteng</option>
+                            <option value='Limpopo'>Limpopo</option>
+                            <option value='North-West'>North West</option>
                     </select>
                 </label>
 
@@ -125,7 +121,7 @@ export default function AddItem() {
                         value={formValues.price}
                         onChange={onChange}
                         name='price'
-                        type='number'
+                        type='text'
                         inputmode='decimal'
                         placeholder='Please enter a number'
                     />

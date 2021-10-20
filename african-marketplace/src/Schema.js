@@ -8,7 +8,7 @@ const formSchema = yup.object().shape({
         .min(2, 'name must be at least 2 characters'),
     location: yup
         .string()
-        .oneOf(['Eastern Cape', 'Free State', 'Gauteng', 'Limpopo', 'North West'], 'Province is required'),
+        .oneOf(['Eastern-Cape', 'Free-State', 'Gauteng', 'Limpopo', 'North-West'], 'Province is required'),
     description: yup
         .string(),
     price: yup
