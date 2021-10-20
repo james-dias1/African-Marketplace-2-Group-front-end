@@ -9,7 +9,7 @@ const formSchema = yup.object().shape({
     location: yup
         .string()
         .oneOf(['Eastern Cape', 'Free State', 'Gauteng', 'Limpopo', 'North West'], 'Province is required'),
-    instructions: yup
+    description: yup
         .string(),
     price: yup
         .string()
