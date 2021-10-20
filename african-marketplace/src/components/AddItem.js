@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import * as yup from 'yup'
 import schema from '../Schema'
+import '../CSS/AddItem.css'
 
 
 const initialFormValues = {
@@ -24,8 +25,6 @@ const initialDisabled = true
 
 export default function AddItem() {
 
-
-    // const [item, setItem] = useState(initialItem)
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
@@ -77,12 +76,13 @@ export default function AddItem() {
     }
 
     return(
-        <form id='add-listing-form' onSubmit={onSubmit}>
+        <form className='add-listing-form' onSubmit={onSubmit}>
             <div className='form-inputs'>
-                <h2>Add a listing!</h2>
                 
-                <label>Location
-                    <select id='location-dropdown' 
+                <h2>Add an item to the marketplace below!</h2>
+                <div className='inputs'>
+                <label className='label'>Location:
+                    <select className='location-dropdown' 
                         onChange={onChange}
                         value={formValues.location}
                         name='location'>
@@ -94,20 +94,21 @@ export default function AddItem() {
                             <option value='North-West'>North West</option>
                     </select>
                 </label>
-
-                <label>Item Name
+    
+                <label className='label'>Item Name:
                     <input
-                        id='item-name'
+                        className='item-name'
                         value={formValues.name}
                         onChange={onChange}
                         name='name'
                         type='text'
+                        placeholder='Enter item name'
                     />
                 </label>
 
-                <label>Description
+                <label className='label'>Description:
                     <input
-                        id='item-description'
+                        className='item-description'
                         value={formValues.description}
                         onChange={onChange}
                         name='description'
@@ -115,9 +116,9 @@ export default function AddItem() {
                     />
                 </label>
 
-                <label>Price
+                <label className='label'>Price:
                     <input
-                        id='item-price'
+                        className='item-price'
                         value={formValues.price}
                         onChange={onChange}
                         name='price'
@@ -126,17 +127,17 @@ export default function AddItem() {
                         placeholder='Please enter a number'
                     />
                 </label>
-
+                </div>
             </div>
-
             <div className='form-submit'>
-                <button id='add-button'>Post Item</button>
+                <button id='add-button'>Post Item!</button>
                 <div className='errors'>
                     <div>{formErrors.location}</div>
                     <div>{formErrors.name}</div>
                     <div>{formErrors.price}</div>
                 </div>
             </div>
+            
         </form>
     )
 }

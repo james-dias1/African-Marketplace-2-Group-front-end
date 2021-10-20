@@ -13,7 +13,6 @@ const Header = () => {
             <div className="right-links">
                 <Link className="link" to='/additem'>Add New Item</Link>
                 <Link className="link" to='/login'>Login</Link>
-                <Link className="link" to='/postitem'>Post Item</Link>
             </div>
         </nav>
     )
