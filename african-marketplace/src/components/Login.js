@@ -35,29 +35,35 @@ const Login = () => {
 
 
     return(
-        <div>
-            <h2> Login to use the marketplace! </h2>
-            <form onSubmit={handleSubmit}>
-                <label> Username:
-                    <input 
-                        type="text"
-                        name="username"
-                        placeholder="Enter your username"
-                        value={login.username}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label> Password:
-                    <input 
-                        type="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        value={login.password}
-                        onChange={handleChange}
-                    />
-                </label>
-                <button className="home-btn">Login</button>
-            </form>
+        <div className="login-container">
+            <div className="login-card">
+                <h2>Login to use the marketplace!</h2>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="login-inputs">
+                        <label> Username:
+                            <input 
+                                type="text"
+                                name="username"
+                                placeholder="Enter your username"
+                                value={login.username}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+                    <div className="login-inputs">
+                        <label> Password:
+                            <input 
+                                type="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                value={login.password}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+                    <button className="home-btn">Login</button>
+                </form>
+            </div>
         </div>
     )
 }
