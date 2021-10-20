@@ -11,8 +11,6 @@ import AddItem from './components/AddItem';
 
 function App() {
 
-  const [items, setItems] = useState([]);
-
   return (
     <Router>
       <Header />
@@ -20,8 +18,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/login" component={Login} />
-        <Route path="/postitem" component={AddItem} setItems={setItems} items={items}/>
-        <Route path='/products'component={Products} setItems={setItems} items={items}/> 
+        <Route path="/postitem" component={AddItem}/>
+        <Route path='/products'component={Products}/> 
       </Switch>
     </Router>
   );
