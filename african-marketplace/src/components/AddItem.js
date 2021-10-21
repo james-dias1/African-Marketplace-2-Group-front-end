@@ -120,7 +120,7 @@ export default function AddItem() {
                         value={formValues.price}
                         onChange={onChange}
                         name='price'
-                        type='text'
+                        type='float'
                         inputmode='decimal'
                         placeholder='Please enter a number'
                     />
