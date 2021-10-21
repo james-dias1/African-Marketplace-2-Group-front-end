@@ -8,11 +8,12 @@ const Header = () => {
         <nav className="nav-bar">
             <div className="left-links">
                 <Link className="link" to='/'>Home</Link>
-                <Link className="link" to='/products'>Products</Link>
+                {localStorage.getItem('token') && <Link className="link" to='/products'>Products</Link> }
             </div>
             <div className="right-links">
                 <Link className="link" to='/signup'>Signup</Link>
                 <Link className="link" to='/login'>Login</Link>
+                {localStorage.getItem('token') && <Link className="link" to='/postitem'>Post Item</Link> }
             </div>
         </nav>
     )
