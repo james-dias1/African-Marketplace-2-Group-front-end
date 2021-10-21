@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useRouteMatch } from 'react-router-dom';
 
-
+import axiosWithAuth from '../Helpers/AxiosWithAuth';
 import data from '../data'
 import '../CSS/Products.css'
 
-function fetchStock() {
-  // fetchStock simulates getting data through axios.get(<URL>)
-  return Promise.resolve({ success: true, data })
-}
+// function fetchStock() {
+//   // fetchStock simulates getting data through axios.get(<URL>)
+//   return Promise.resolve({ success: true, data })
+// }
 
 
 export default function Products(props) {
@@ -17,7 +17,15 @@ export default function Products(props) {
     let count = 1;
 
   useEffect(() => {
-    fetchStock().then(res => setItems(res.data))
+    axiosWithAuth().get('https://lbs-african-marketplace.herokuapp.com/items')
+      .then(resp => {
+        console.log(resp);
+        setItems(resp.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    // fetchStock().then(res => setItems(res.data))
   }, [])
   console.log("App stock = ", items)
 
@@ -33,7 +41,7 @@ export default function Products(props) {
                     <Link to={`${url}/${item.id}`}>
                     <img
                         className='items-list-image'
-                        src={item.imageUrl}
+                        src={item.URL}
                         alt={item.name}
                     />
                     {/* <p>{item.name}</p> */}
@@ -45,8 +53,9 @@ export default function Products(props) {
                 {/* {(count++)} */}
                 <div className={'text order'+ (((item.id+1)*2)+(item.id%2*(-1)) )%2  }>
                     <h2>{item.name}</h2>
-                    <p>{item.instructions}</p>
+                    <p>{item.description}</p>
                     <p>{item.location}</p>
+                    <p>${item.price}</p>
                 </div>
 
 

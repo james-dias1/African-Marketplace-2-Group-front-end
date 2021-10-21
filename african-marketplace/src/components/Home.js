@@ -11,11 +11,17 @@ const Home = () => {
         push('/login');
     }
 
+    const handleSignup = () => {
+        push('/signup');
+    }
     
     return(
         <div className="home-div">
             <h1>African Marketplace</h1>
-            <button className="home-btn" onClick={handleClick}>Login</button>
+            <div className="btn-div">
+                <button className="home-btn" onClick={handleClick}>Login</button>
+                <button className="home-btn" onClick={handleSignup}>Signup</button>
+            </div>
         </div>
     )
 }
