@@ -19,7 +19,7 @@ h1 {
 .home-btn {
     margin-top: 1%;
     font-size: 1.25rem;
-    padding: .25% .85%;
+    padding: 2% 5%;
     border-radius: 6px;
     border: .5px solid #E5DCC3;
 }
@@ -34,6 +34,6 @@ h1 {
 
 .btn-div {
     display: flex;
-    width: 7%;
+    width: 9%;
     justify-content: space-between;
 }

@@ -1,16 +1,21 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import * as yup from 'yup'
-import schema from '../Schema'
-import '../CSS/AddItem.css'
-// push
+import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import * as yup from 'yup';
+import schema from '../Schema';
+import '../CSS/AddItem.css';
+
+import axiosWithAuth from '../Helpers/AxiosWithAuth';
 
 
 const initialFormValues = {
     name: '',
     location: '',
     description: '',
-    price: ''
+    price: '',
+    URL: '',
+    category: '',
+    user_id: ''
 }
 
 const initialFormErrors = {
@@ -24,14 +29,17 @@ const initialDisabled = true
 
 export default function AddItem() {
 
+    const { push } = useHistory();
+
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
 
     const postNewItem = newItem => {
-        axios.post('https://pokeapi.co/', newItem)
+        axiosWithAuth().post('https://lbs-african-marketplace.herokuapp.com/items/additem', newItem)
             .then(response => {
-                setFormValues([[response.data], ...formValues])
+                console.log(response);
+                push('/products');
             })
             .catch(error => {
                 console.error(error)
@@ -57,7 +65,10 @@ export default function AddItem() {
             name: formValues.name, 
             location: formValues.location,
             description: formValues.description,
-            price: formValues.price
+            price: formValues.price,
+            URL: formValues.URL,
+            category: formValues.category,
+            user_id: formValues.user_id
         }
         postNewItem(newItem)
     }
@@ -68,9 +79,10 @@ export default function AddItem() {
     }
 
     const onChange = event => {
-        validate(event.target.name, event.target.value)
+        validate(event.target.name, event.target.value);
         setFormValues({
-            [event.target.name]: event.target.value,
+            ...formValues,
+            [event.target.name]: event.target.value
         })
     }
 
@@ -104,7 +116,7 @@ export default function AddItem() {
                         placeholder='Enter item name'
                     />
                 </label>
-                
+
                 <label className='label'>Description:
                     <input
                         className='item-description'
@@ -121,9 +133,42 @@ export default function AddItem() {
                         value={formValues.price}
                         onChange={onChange}
                         name='price'
-                        type='float'
+                        type='text'
                         inputmode='decimal'
                         placeholder='Please enter a number'
+                    />
+                </label>
+                <label className='label'>Category:
+                    <input
+                        className='item-price'
+                        value={formValues.category}
+                        onChange={onChange}
+                        name='category'
+                        type='text'
+                        inputmode='decimal'
+                        placeholder='Please enter the category of the item'
+                    />
+                </label>
+                <label className='label'>Image:
+                    <input
+                        className='item-price'
+                        value={formValues.URL}
+                        onChange={onChange}
+                        name='URL'
+                        type='text'
+                        inputmode='decimal'
+                        placeholder='Please enter an image url'
+                    />
+                </label>
+                <label className='label'>User-ID:
+                    <input
+                        className='item-price'
+                        value={formValues.user_id}
+                        onChange={onChange}
+                        name='user_id'
+                        type='number'
+                        inputmode='decimal'
+                        placeholder='Please enter your id'
                     />
                 </label>
                 </div>

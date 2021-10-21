@@ -20,8 +20,8 @@ function App() {
         <Route exact path="/" component={Home}/>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/postitem" component={AddItem}/>
-        <Route path='/products'component={Products}/> 
+        <PrivateRoute path="/postitem" component={AddItem}/>
+        <PrivateRoute path='/products'component={Products}/> 
       </Switch>
     </Router>
   );

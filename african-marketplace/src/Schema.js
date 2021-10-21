@@ -13,7 +13,14 @@ const formSchema = yup.object().shape({
         .string(),
     price: yup
         .string()
-        .required('Price is required')
+        .required('Price is required'),
+    category: yup
+        .string(),
+    URL: yup
+        .string(),
+    user_id: yup
+        .string()
+        .required('You must enter your user id!'),
 })
 
 export default formSchema;

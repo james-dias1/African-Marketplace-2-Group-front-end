@@ -53,4 +53,19 @@ padding: 4%;
     order: 1;
 }
 
+.bold {
+  font-weight: bold;
+}
 
+.delete {
+  color: #DA0037;
+  border: 1px solid red;
+}
+
+.delete:hover {
+  background-color: lightgrey;
+}
+
+.delete:active {
+  transform: translateY(3px);
+}
