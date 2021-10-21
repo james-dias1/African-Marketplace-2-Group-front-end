@@ -11,6 +11,7 @@ const Header = () => {
                 <Link className="link" to='/products'>Products</Link>
             </div>
             <div className="right-links">
+                <Link className="AddItem" to='/additem'>Post New Item</Link>
                 <Link className="link" to='/login'>Login</Link>
             </div>
         </nav>

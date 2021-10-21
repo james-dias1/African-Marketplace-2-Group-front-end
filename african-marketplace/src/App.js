@@ -18,7 +18,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/login" component={Login} />
-        <Route path="/postitem" component={AddItem}/>
+        <Route path="/additem" component={AddItem}/>
         <Route path='/products'component={Products}/> 
       </Switch>
     </Router>
