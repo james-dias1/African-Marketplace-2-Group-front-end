@@ -5,28 +5,29 @@ import axios from 'axios';
 
 import '../CSS/Login.css';
 
-const Login = () => {
+const Signup = () => {
 
     const { push } = useHistory();
 
-    const [login, setLogin] = useState({
+    const [newUser, setNewUser] = useState({
         username: '',
-        password: ''
+        password: '',
+        department: ''
     })
 
     const handleChange = (e) => {
-        setLogin({
-            ...login,
+        setNewUser({
+            ...newUser,
             [e.target.name]: e.target.value
         })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://lbs-african-marketplace.herokuapp.com/auth/login', login)
+        axios.post('https://lbs-african-marketplace.herokuapp.com/auth/register', newUser)
             .then(resp => {
-                localStorage.setItem('token', resp.data.token);
-                push('/products');
+                console.log(resp);
+                push('/login');
             })
             .catch(err => {
                 console.log(err);
@@ -37,7 +38,7 @@ const Login = () => {
     return(
         <div className="login-container">
             <div className="login-card">
-                <h2>Login to use the marketplace!</h2>
+                <h2>Sign up to use the marketplace!</h2>
                 <form className="login-form" onSubmit={handleSubmit}>
                     <div className="login-inputs">
                         <label> Username:
@@ -45,7 +46,7 @@ const Login = () => {
                                 type="text"
                                 name="username"
                                 placeholder="Enter your username"
-                                value={login.username}
+                                value={newUser.username}
                                 onChange={handleChange}
                             />
                         </label>
@@ -56,16 +57,25 @@ const Login = () => {
                                 type="password"
                                 name="password"
                                 placeholder="Enter your password"
-                                value={login.password}
+                                value={newUser.password}
                                 onChange={handleChange}
                             />
                         </label>
                     </div>
-                    <button className="home-btn">Login</button>
+                    <div className="login-inputs">
+                        <label> Department:
+                            <select name="department" onChange={handleChange}>
+                                <option value="">---Select your role---</option>
+                                <option value="buyer">Buyer</option>
+                                <option value="seller">Seller</option>
+                            </select>
+                        </label>
+                    </div>
+                    <button className="home-btn">Sign up</button>
                 </form>
             </div>
         </div>
     )
 }
 
-export default Login;
+export default Signup;

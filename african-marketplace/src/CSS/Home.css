@@ -31,3 +31,9 @@ h1 {
 .home-btn:active {
     transform: translateY(3px);
 }
+
+.btn-div {
+    display: flex;
+    width: 7%;
+    justify-content: space-between;
+}
