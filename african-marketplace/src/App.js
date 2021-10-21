@@ -5,9 +5,10 @@ import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
 import Products from './components/Products';
-
+import Signup from './components/Signup';
 import Login from './components/Login';
 import AddItem from './components/AddItem';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 
@@ -18,8 +19,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/login" component={Login} />
-        <Route path="/additem" component={AddItem}/>
-        <Route path='/products'component={Products}/> 
+        <Route path="/signup" component={Signup} />
+        <PrivateRoute path="/postitem" component={AddItem}/>
+        <PrivateRoute path='/products'component={Products}/> 
       </Switch>
     </Router>
   );
