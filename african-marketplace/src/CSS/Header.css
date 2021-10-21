@@ -27,3 +27,14 @@
     text-decoration: underline;
     color: white;
 }
+
+.link-1 {
+    text-decoration: none;
+    padding: 2.5% 1.5%;
+    color: grey;
+}
+
+.link-1:hover {
+    text-decoration: underline;
+    color: black;
+}

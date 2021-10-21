@@ -29,6 +29,7 @@
 
 .login-card h2 {
     font-size: 2.5rem;
+    
 }
 
 .login-inputs {
@@ -39,3 +40,6 @@
     margin: 1.5%;
 }
 
+.special-p {
+    width: 30%;
+}

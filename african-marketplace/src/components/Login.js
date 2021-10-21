@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -63,6 +63,7 @@ const Login = () => {
                     </div>
                     <button className="home-btn">Login</button>
                 </form>
+                <p className="special-p">Don't have an account?<Link className="link-1" to='/signup'>Sign up</Link></p>
             </div>
         </div>
     )
