@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <PrivateRoute path="/postitem" component={AddItem}/>
-        <Route path='/products'component={Products}/> 
+        <PrivateRoute path='/products'component={Products}/> 
       </Switch>
     </Router>
   );
