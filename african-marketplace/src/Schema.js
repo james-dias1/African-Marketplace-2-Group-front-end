@@ -19,7 +19,8 @@ const formSchema = yup.object().shape({
     URL: yup
         .string(),
     user_id: yup
-        .string(),
+        .string()
+        .required('You must enter your user id!'),
 })
 
 export default formSchema;

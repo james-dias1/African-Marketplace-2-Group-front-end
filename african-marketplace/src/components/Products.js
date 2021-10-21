@@ -19,7 +19,6 @@ export default function Products(props) {
   useEffect(() => {
     axiosWithAuth().get('https://lbs-african-marketplace.herokuapp.com/items')
       .then(resp => {
-        console.log(resp);
         setItems(resp.data);
       })
       .catch(err => {
@@ -28,6 +27,22 @@ export default function Products(props) {
     // fetchStock().then(res => setItems(res.data))
   }, [])
   console.log("App stock = ", items)
+
+  const handleDelete = (id) => {
+    axiosWithAuth().delete(`https://lbs-african-marketplace.herokuapp.com/items/${id}`)
+      .then(resp => {
+        axiosWithAuth().get('https://lbs-african-marketplace.herokuapp.com/items')
+          .then(resp => {
+            setItems(resp.data);
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
   if (!items) return <h2>Oh no not fount..</h2>;
   return (
@@ -53,11 +68,13 @@ export default function Products(props) {
                 {/* {(count++)} */}
                 <div className={'text order'+ (((item.id+1)*2)+(item.id%2*(-1)) )%2  }>
                     <h2>{item.name}</h2>
-                    <p>{item.description}</p>
-                    <p>{item.location}</p>
-                    <p>${item.price}</p>
+                    <p><span className="bold">Category: </span>{item.category}</p>
+                    <p><span className="bold">Description: </span>{item.description}</p>
+                    <p><span className="bold">Location: </span>{item.location}</p>
+                    <p ><span className="bold">$</span>{item.price}</p>
+                    <button className="delete" onClick={() => handleDelete(item.id)}>Delete</button>
                 </div>
-
+            
 
             </div>
 

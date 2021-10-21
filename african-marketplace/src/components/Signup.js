@@ -28,6 +28,7 @@ const Signup = () => {
         axios.post('https://lbs-african-marketplace.herokuapp.com/auth/register', newUser)
             .then(resp => {
                 console.log(resp);
+                alert(`Your User-ID is: ${resp.data.id}, you need your User-ID to post new items!`);
                 push('/login');
             })
             .catch(err => {
