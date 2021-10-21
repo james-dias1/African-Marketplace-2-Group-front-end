@@ -18,8 +18,6 @@ const initialFormErrors = {
     price: '',
 }
 
-const initialItem = []
-
 const initialDisabled = true
 
 
